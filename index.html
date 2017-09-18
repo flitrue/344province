@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Flitrue`s Blog</title>
+    <title>344 Province</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,18 +201,17 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;html&quot;,&quot;css&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
-        NAV
         <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="html">html</a>
+              <a href="#" data-language-name="css">css</a>
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
@@ -224,28 +223,13 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+            <a href="#installing" class="toc-h1 toc-link" data-title="Installing">Installing</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Kittens">Get All Kittens</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Delete a Specific Kitten</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#resources" class="toc-h1 toc-link" data-title="Resources">Resources</a>
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -253,246 +237,471 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>我采用了百度开源的图表库制作了一张中国344个主要城市（县）的地图。用户可以滚轮／点击切换图表。</p>
+<h1 id='installing'>Installing</h1>
+<p><code>git clone https://flitrue.github.io/344province</code></p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>代码介绍</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;title&gt;</span>全国344个主要城市（县）地图<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"main"</span> <span class="na">style=</span><span class="s">"height:400px;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"./echarts/dist/echarts.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"./echarts/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+        <span class="nx">require</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
+            <span class="na">paths</span><span class="p">:</span> <span class="p">{</span>
+                <span class="na">echarts</span><span class="p">:</span> <span class="s1">'./echarts/dist'</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
+        <span class="nx">require</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="s1">'echarts'</span><span class="p">,</span>
+                <span class="s1">'echarts/chart/map'</span>
+            <span class="p">],</span>
+            <span class="kd">function</span> <span class="p">(</span><span class="nx">ec</span><span class="p">)</span> <span class="p">{</span>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+        <span class="kd">var</span> <span class="nx">cityMap</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"北京市"</span><span class="p">:</span> <span class="s2">"110100"</span><span class="p">,</span>
+            <span class="s2">"天津市"</span><span class="p">:</span> <span class="s2">"120100"</span><span class="p">,</span>
+            <span class="s2">"上海市"</span><span class="p">:</span> <span class="s2">"310100"</span><span class="p">,</span>
+            <span class="s2">"重庆市"</span><span class="p">:</span> <span class="s2">"500100"</span><span class="p">,</span>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+            <span class="s2">"崇明县"</span><span class="p">:</span> <span class="s2">"310200"</span><span class="p">,</span>
+            <span class="s2">"湖北省直辖县市"</span><span class="p">:</span> <span class="s2">"429000"</span><span class="p">,</span>
+            <span class="s2">"铜仁市"</span><span class="p">:</span> <span class="s2">"522200"</span><span class="p">,</span>
+            <span class="s2">"毕节市"</span><span class="p">:</span> <span class="s2">"522400"</span><span class="p">,</span>
 
-<p><code>Authorization: meowmeowmeow</code></p>
+            <span class="s2">"石家庄市"</span><span class="p">:</span> <span class="s2">"130100"</span><span class="p">,</span>
+            <span class="s2">"唐山市"</span><span class="p">:</span> <span class="s2">"130200"</span><span class="p">,</span>
+            <span class="s2">"秦皇岛市"</span><span class="p">:</span> <span class="s2">"130300"</span><span class="p">,</span>
+            <span class="s2">"邯郸市"</span><span class="p">:</span> <span class="s2">"130400"</span><span class="p">,</span>
+            <span class="s2">"邢台市"</span><span class="p">:</span> <span class="s2">"130500"</span><span class="p">,</span>
+            <span class="s2">"保定市"</span><span class="p">:</span> <span class="s2">"130600"</span><span class="p">,</span>
+            <span class="s2">"张家口市"</span><span class="p">:</span> <span class="s2">"130700"</span><span class="p">,</span>
+            <span class="s2">"承德市"</span><span class="p">:</span> <span class="s2">"130800"</span><span class="p">,</span>
+            <span class="s2">"沧州市"</span><span class="p">:</span> <span class="s2">"130900"</span><span class="p">,</span>
+            <span class="s2">"廊坊市"</span><span class="p">:</span> <span class="s2">"131000"</span><span class="p">,</span>
+            <span class="s2">"衡水市"</span><span class="p">:</span> <span class="s2">"131100"</span><span class="p">,</span>
+            <span class="s2">"太原市"</span><span class="p">:</span> <span class="s2">"140100"</span><span class="p">,</span>
+            <span class="s2">"大同市"</span><span class="p">:</span> <span class="s2">"140200"</span><span class="p">,</span>
+            <span class="s2">"阳泉市"</span><span class="p">:</span> <span class="s2">"140300"</span><span class="p">,</span>
+            <span class="s2">"长治市"</span><span class="p">:</span> <span class="s2">"140400"</span><span class="p">,</span>
+            <span class="s2">"晋城市"</span><span class="p">:</span> <span class="s2">"140500"</span><span class="p">,</span>
+            <span class="s2">"朔州市"</span><span class="p">:</span> <span class="s2">"140600"</span><span class="p">,</span>
+            <span class="s2">"晋中市"</span><span class="p">:</span> <span class="s2">"140700"</span><span class="p">,</span>
+            <span class="s2">"运城市"</span><span class="p">:</span> <span class="s2">"140800"</span><span class="p">,</span>
+            <span class="s2">"忻州市"</span><span class="p">:</span> <span class="s2">"140900"</span><span class="p">,</span>
+            <span class="s2">"临汾市"</span><span class="p">:</span> <span class="s2">"141000"</span><span class="p">,</span>
+            <span class="s2">"吕梁市"</span><span class="p">:</span> <span class="s2">"141100"</span><span class="p">,</span>
+            <span class="s2">"呼和浩特市"</span><span class="p">:</span> <span class="s2">"150100"</span><span class="p">,</span>
+            <span class="s2">"包头市"</span><span class="p">:</span> <span class="s2">"150200"</span><span class="p">,</span>
+            <span class="s2">"乌海市"</span><span class="p">:</span> <span class="s2">"150300"</span><span class="p">,</span>
+            <span class="s2">"赤峰市"</span><span class="p">:</span> <span class="s2">"150400"</span><span class="p">,</span>
+            <span class="s2">"通辽市"</span><span class="p">:</span> <span class="s2">"150500"</span><span class="p">,</span>
+            <span class="s2">"鄂尔多斯市"</span><span class="p">:</span> <span class="s2">"150600"</span><span class="p">,</span>
+            <span class="s2">"呼伦贝尔市"</span><span class="p">:</span> <span class="s2">"150700"</span><span class="p">,</span>
+            <span class="s2">"巴彦淖尔市"</span><span class="p">:</span> <span class="s2">"150800"</span><span class="p">,</span>
+            <span class="s2">"乌兰察布市"</span><span class="p">:</span> <span class="s2">"150900"</span><span class="p">,</span>
+            <span class="s2">"兴安盟"</span><span class="p">:</span> <span class="s2">"152200"</span><span class="p">,</span>
+            <span class="s2">"锡林郭勒盟"</span><span class="p">:</span> <span class="s2">"152500"</span><span class="p">,</span>
+            <span class="s2">"阿拉善盟"</span><span class="p">:</span> <span class="s2">"152900"</span><span class="p">,</span>
+            <span class="s2">"沈阳市"</span><span class="p">:</span> <span class="s2">"210100"</span><span class="p">,</span>
+            <span class="s2">"大连市"</span><span class="p">:</span> <span class="s2">"210200"</span><span class="p">,</span>
+            <span class="s2">"鞍山市"</span><span class="p">:</span> <span class="s2">"210300"</span><span class="p">,</span>
+            <span class="s2">"抚顺市"</span><span class="p">:</span> <span class="s2">"210400"</span><span class="p">,</span>
+            <span class="s2">"本溪市"</span><span class="p">:</span> <span class="s2">"210500"</span><span class="p">,</span>
+            <span class="s2">"丹东市"</span><span class="p">:</span> <span class="s2">"210600"</span><span class="p">,</span>
+            <span class="s2">"锦州市"</span><span class="p">:</span> <span class="s2">"210700"</span><span class="p">,</span>
+            <span class="s2">"营口市"</span><span class="p">:</span> <span class="s2">"210800"</span><span class="p">,</span>
+            <span class="s2">"阜新市"</span><span class="p">:</span> <span class="s2">"210900"</span><span class="p">,</span>
+            <span class="s2">"辽阳市"</span><span class="p">:</span> <span class="s2">"211000"</span><span class="p">,</span>
+            <span class="s2">"盘锦市"</span><span class="p">:</span> <span class="s2">"211100"</span><span class="p">,</span>
+            <span class="s2">"铁岭市"</span><span class="p">:</span> <span class="s2">"211200"</span><span class="p">,</span>
+            <span class="s2">"朝阳市"</span><span class="p">:</span> <span class="s2">"211300"</span><span class="p">,</span>
+            <span class="s2">"葫芦岛市"</span><span class="p">:</span> <span class="s2">"211400"</span><span class="p">,</span>
+            <span class="s2">"长春市"</span><span class="p">:</span> <span class="s2">"220100"</span><span class="p">,</span>
+            <span class="s2">"吉林市"</span><span class="p">:</span> <span class="s2">"220200"</span><span class="p">,</span>
+            <span class="s2">"四平市"</span><span class="p">:</span> <span class="s2">"220300"</span><span class="p">,</span>
+            <span class="s2">"辽源市"</span><span class="p">:</span> <span class="s2">"220400"</span><span class="p">,</span>
+            <span class="s2">"通化市"</span><span class="p">:</span> <span class="s2">"220500"</span><span class="p">,</span>
+            <span class="s2">"白山市"</span><span class="p">:</span> <span class="s2">"220600"</span><span class="p">,</span>
+            <span class="s2">"松原市"</span><span class="p">:</span> <span class="s2">"220700"</span><span class="p">,</span>
+            <span class="s2">"白城市"</span><span class="p">:</span> <span class="s2">"220800"</span><span class="p">,</span>
+            <span class="s2">"延边朝鲜族自治州"</span><span class="p">:</span> <span class="s2">"222400"</span><span class="p">,</span>
+            <span class="s2">"哈尔滨市"</span><span class="p">:</span> <span class="s2">"230100"</span><span class="p">,</span>
+            <span class="s2">"齐齐哈尔市"</span><span class="p">:</span> <span class="s2">"230200"</span><span class="p">,</span>
+            <span class="s2">"鸡西市"</span><span class="p">:</span> <span class="s2">"230300"</span><span class="p">,</span>
+            <span class="s2">"鹤岗市"</span><span class="p">:</span> <span class="s2">"230400"</span><span class="p">,</span>
+            <span class="s2">"双鸭山市"</span><span class="p">:</span> <span class="s2">"230500"</span><span class="p">,</span>
+            <span class="s2">"大庆市"</span><span class="p">:</span> <span class="s2">"230600"</span><span class="p">,</span>
+            <span class="s2">"伊春市"</span><span class="p">:</span> <span class="s2">"230700"</span><span class="p">,</span>
+            <span class="s2">"佳木斯市"</span><span class="p">:</span> <span class="s2">"230800"</span><span class="p">,</span>
+            <span class="s2">"七台河市"</span><span class="p">:</span> <span class="s2">"230900"</span><span class="p">,</span>
+            <span class="s2">"牡丹江市"</span><span class="p">:</span> <span class="s2">"231000"</span><span class="p">,</span>
+            <span class="s2">"黑河市"</span><span class="p">:</span> <span class="s2">"231100"</span><span class="p">,</span>
+            <span class="s2">"绥化市"</span><span class="p">:</span> <span class="s2">"231200"</span><span class="p">,</span>
+            <span class="s2">"大兴安岭地区"</span><span class="p">:</span> <span class="s2">"232700"</span><span class="p">,</span>
+            <span class="s2">"南京市"</span><span class="p">:</span> <span class="s2">"320100"</span><span class="p">,</span>
+            <span class="s2">"无锡市"</span><span class="p">:</span> <span class="s2">"320200"</span><span class="p">,</span>
+            <span class="s2">"徐州市"</span><span class="p">:</span> <span class="s2">"320300"</span><span class="p">,</span>
+            <span class="s2">"常州市"</span><span class="p">:</span> <span class="s2">"320400"</span><span class="p">,</span>
+            <span class="s2">"苏州市"</span><span class="p">:</span> <span class="s2">"320500"</span><span class="p">,</span>
+            <span class="s2">"南通市"</span><span class="p">:</span> <span class="s2">"320600"</span><span class="p">,</span>
+            <span class="s2">"连云港市"</span><span class="p">:</span> <span class="s2">"320700"</span><span class="p">,</span>
+            <span class="s2">"淮安市"</span><span class="p">:</span> <span class="s2">"320800"</span><span class="p">,</span>
+            <span class="s2">"盐城市"</span><span class="p">:</span> <span class="s2">"320900"</span><span class="p">,</span>
+            <span class="s2">"扬州市"</span><span class="p">:</span> <span class="s2">"321000"</span><span class="p">,</span>
+            <span class="s2">"镇江市"</span><span class="p">:</span> <span class="s2">"321100"</span><span class="p">,</span>
+            <span class="s2">"泰州市"</span><span class="p">:</span> <span class="s2">"321200"</span><span class="p">,</span>
+            <span class="s2">"宿迁市"</span><span class="p">:</span> <span class="s2">"321300"</span><span class="p">,</span>
+            <span class="s2">"杭州市"</span><span class="p">:</span> <span class="s2">"330100"</span><span class="p">,</span>
+            <span class="s2">"宁波市"</span><span class="p">:</span> <span class="s2">"330200"</span><span class="p">,</span>
+            <span class="s2">"温州市"</span><span class="p">:</span> <span class="s2">"330300"</span><span class="p">,</span>
+            <span class="s2">"嘉兴市"</span><span class="p">:</span> <span class="s2">"330400"</span><span class="p">,</span>
+            <span class="s2">"湖州市"</span><span class="p">:</span> <span class="s2">"330500"</span><span class="p">,</span>
+            <span class="s2">"绍兴市"</span><span class="p">:</span> <span class="s2">"330600"</span><span class="p">,</span>
+            <span class="s2">"金华市"</span><span class="p">:</span> <span class="s2">"330700"</span><span class="p">,</span>
+            <span class="s2">"衢州市"</span><span class="p">:</span> <span class="s2">"330800"</span><span class="p">,</span>
+            <span class="s2">"舟山市"</span><span class="p">:</span> <span class="s2">"330900"</span><span class="p">,</span>
+            <span class="s2">"台州市"</span><span class="p">:</span> <span class="s2">"331000"</span><span class="p">,</span>
+            <span class="s2">"丽水市"</span><span class="p">:</span> <span class="s2">"331100"</span><span class="p">,</span>
+            <span class="s2">"合肥市"</span><span class="p">:</span> <span class="s2">"340100"</span><span class="p">,</span>
+            <span class="s2">"芜湖市"</span><span class="p">:</span> <span class="s2">"340200"</span><span class="p">,</span>
+            <span class="s2">"蚌埠市"</span><span class="p">:</span> <span class="s2">"340300"</span><span class="p">,</span>
+            <span class="s2">"淮南市"</span><span class="p">:</span> <span class="s2">"340400"</span><span class="p">,</span>
+            <span class="s2">"马鞍山市"</span><span class="p">:</span> <span class="s2">"340500"</span><span class="p">,</span>
+            <span class="s2">"淮北市"</span><span class="p">:</span> <span class="s2">"340600"</span><span class="p">,</span>
+            <span class="s2">"铜陵市"</span><span class="p">:</span> <span class="s2">"340700"</span><span class="p">,</span>
+            <span class="s2">"安庆市"</span><span class="p">:</span> <span class="s2">"340800"</span><span class="p">,</span>
+            <span class="s2">"黄山市"</span><span class="p">:</span> <span class="s2">"341000"</span><span class="p">,</span>
+            <span class="s2">"滁州市"</span><span class="p">:</span> <span class="s2">"341100"</span><span class="p">,</span>
+            <span class="s2">"阜阳市"</span><span class="p">:</span> <span class="s2">"341200"</span><span class="p">,</span>
+            <span class="s2">"宿州市"</span><span class="p">:</span> <span class="s2">"341300"</span><span class="p">,</span>
+            <span class="s2">"六安市"</span><span class="p">:</span> <span class="s2">"341500"</span><span class="p">,</span>
+            <span class="s2">"亳州市"</span><span class="p">:</span> <span class="s2">"341600"</span><span class="p">,</span>
+            <span class="s2">"池州市"</span><span class="p">:</span> <span class="s2">"341700"</span><span class="p">,</span>
+            <span class="s2">"宣城市"</span><span class="p">:</span> <span class="s2">"341800"</span><span class="p">,</span>
+            <span class="s2">"福州市"</span><span class="p">:</span> <span class="s2">"350100"</span><span class="p">,</span>
+            <span class="s2">"厦门市"</span><span class="p">:</span> <span class="s2">"350200"</span><span class="p">,</span>
+            <span class="s2">"莆田市"</span><span class="p">:</span> <span class="s2">"350300"</span><span class="p">,</span>
+            <span class="s2">"三明市"</span><span class="p">:</span> <span class="s2">"350400"</span><span class="p">,</span>
+            <span class="s2">"泉州市"</span><span class="p">:</span> <span class="s2">"350500"</span><span class="p">,</span>
+            <span class="s2">"漳州市"</span><span class="p">:</span> <span class="s2">"350600"</span><span class="p">,</span>
+            <span class="s2">"南平市"</span><span class="p">:</span> <span class="s2">"350700"</span><span class="p">,</span>
+            <span class="s2">"龙岩市"</span><span class="p">:</span> <span class="s2">"350800"</span><span class="p">,</span>
+            <span class="s2">"宁德市"</span><span class="p">:</span> <span class="s2">"350900"</span><span class="p">,</span>
+            <span class="s2">"南昌市"</span><span class="p">:</span> <span class="s2">"360100"</span><span class="p">,</span>
+            <span class="s2">"景德镇市"</span><span class="p">:</span> <span class="s2">"360200"</span><span class="p">,</span>
+            <span class="s2">"萍乡市"</span><span class="p">:</span> <span class="s2">"360300"</span><span class="p">,</span>
+            <span class="s2">"九江市"</span><span class="p">:</span> <span class="s2">"360400"</span><span class="p">,</span>
+            <span class="s2">"新余市"</span><span class="p">:</span> <span class="s2">"360500"</span><span class="p">,</span>
+            <span class="s2">"鹰潭市"</span><span class="p">:</span> <span class="s2">"360600"</span><span class="p">,</span>
+            <span class="s2">"赣州市"</span><span class="p">:</span> <span class="s2">"360700"</span><span class="p">,</span>
+            <span class="s2">"吉安市"</span><span class="p">:</span> <span class="s2">"360800"</span><span class="p">,</span>
+            <span class="s2">"宜春市"</span><span class="p">:</span> <span class="s2">"360900"</span><span class="p">,</span>
+            <span class="s2">"抚州市"</span><span class="p">:</span> <span class="s2">"361000"</span><span class="p">,</span>
+            <span class="s2">"上饶市"</span><span class="p">:</span> <span class="s2">"361100"</span><span class="p">,</span>
+            <span class="s2">"济南市"</span><span class="p">:</span> <span class="s2">"370100"</span><span class="p">,</span>
+            <span class="s2">"青岛市"</span><span class="p">:</span> <span class="s2">"370200"</span><span class="p">,</span>
+            <span class="s2">"淄博市"</span><span class="p">:</span> <span class="s2">"370300"</span><span class="p">,</span>
+            <span class="s2">"枣庄市"</span><span class="p">:</span> <span class="s2">"370400"</span><span class="p">,</span>
+            <span class="s2">"东营市"</span><span class="p">:</span> <span class="s2">"370500"</span><span class="p">,</span>
+            <span class="s2">"烟台市"</span><span class="p">:</span> <span class="s2">"370600"</span><span class="p">,</span>
+            <span class="s2">"潍坊市"</span><span class="p">:</span> <span class="s2">"370700"</span><span class="p">,</span>
+            <span class="s2">"济宁市"</span><span class="p">:</span> <span class="s2">"370800"</span><span class="p">,</span>
+            <span class="s2">"泰安市"</span><span class="p">:</span> <span class="s2">"370900"</span><span class="p">,</span>
+            <span class="s2">"威海市"</span><span class="p">:</span> <span class="s2">"371000"</span><span class="p">,</span>
+            <span class="s2">"日照市"</span><span class="p">:</span> <span class="s2">"371100"</span><span class="p">,</span>
+            <span class="s2">"莱芜市"</span><span class="p">:</span> <span class="s2">"371200"</span><span class="p">,</span>
+            <span class="s2">"临沂市"</span><span class="p">:</span> <span class="s2">"371300"</span><span class="p">,</span>
+            <span class="s2">"德州市"</span><span class="p">:</span> <span class="s2">"371400"</span><span class="p">,</span>
+            <span class="s2">"聊城市"</span><span class="p">:</span> <span class="s2">"371500"</span><span class="p">,</span>
+            <span class="s2">"滨州市"</span><span class="p">:</span> <span class="s2">"371600"</span><span class="p">,</span>
+            <span class="s2">"菏泽市"</span><span class="p">:</span> <span class="s2">"371700"</span><span class="p">,</span>
+            <span class="s2">"郑州市"</span><span class="p">:</span> <span class="s2">"410100"</span><span class="p">,</span>
+            <span class="s2">"开封市"</span><span class="p">:</span> <span class="s2">"410200"</span><span class="p">,</span>
+            <span class="s2">"洛阳市"</span><span class="p">:</span> <span class="s2">"410300"</span><span class="p">,</span>
+            <span class="s2">"平顶山市"</span><span class="p">:</span> <span class="s2">"410400"</span><span class="p">,</span>
+            <span class="s2">"安阳市"</span><span class="p">:</span> <span class="s2">"410500"</span><span class="p">,</span>
+            <span class="s2">"鹤壁市"</span><span class="p">:</span> <span class="s2">"410600"</span><span class="p">,</span>
+            <span class="s2">"新乡市"</span><span class="p">:</span> <span class="s2">"410700"</span><span class="p">,</span>
+            <span class="s2">"焦作市"</span><span class="p">:</span> <span class="s2">"410800"</span><span class="p">,</span>
+            <span class="s2">"濮阳市"</span><span class="p">:</span> <span class="s2">"410900"</span><span class="p">,</span>
+            <span class="s2">"许昌市"</span><span class="p">:</span> <span class="s2">"411000"</span><span class="p">,</span>
+            <span class="s2">"漯河市"</span><span class="p">:</span> <span class="s2">"411100"</span><span class="p">,</span>
+            <span class="s2">"三门峡市"</span><span class="p">:</span> <span class="s2">"411200"</span><span class="p">,</span>
+            <span class="s2">"南阳市"</span><span class="p">:</span> <span class="s2">"411300"</span><span class="p">,</span>
+            <span class="s2">"商丘市"</span><span class="p">:</span> <span class="s2">"411400"</span><span class="p">,</span>
+            <span class="s2">"信阳市"</span><span class="p">:</span> <span class="s2">"411500"</span><span class="p">,</span>
+            <span class="s2">"周口市"</span><span class="p">:</span> <span class="s2">"411600"</span><span class="p">,</span>
+            <span class="s2">"驻马店市"</span><span class="p">:</span> <span class="s2">"411700"</span><span class="p">,</span>
+            <span class="s2">"省直辖县级行政区划"</span><span class="p">:</span> <span class="s2">"469000"</span><span class="p">,</span>
+            <span class="s2">"武汉市"</span><span class="p">:</span> <span class="s2">"420100"</span><span class="p">,</span>
+            <span class="s2">"黄石市"</span><span class="p">:</span> <span class="s2">"420200"</span><span class="p">,</span>
+            <span class="s2">"十堰市"</span><span class="p">:</span> <span class="s2">"420300"</span><span class="p">,</span>
+            <span class="s2">"宜昌市"</span><span class="p">:</span> <span class="s2">"420500"</span><span class="p">,</span>
+            <span class="s2">"襄阳市"</span><span class="p">:</span> <span class="s2">"420600"</span><span class="p">,</span>
+            <span class="s2">"鄂州市"</span><span class="p">:</span> <span class="s2">"420700"</span><span class="p">,</span>
+            <span class="s2">"荆门市"</span><span class="p">:</span> <span class="s2">"420800"</span><span class="p">,</span>
+            <span class="s2">"孝感市"</span><span class="p">:</span> <span class="s2">"420900"</span><span class="p">,</span>
+            <span class="s2">"荆州市"</span><span class="p">:</span> <span class="s2">"421000"</span><span class="p">,</span>
+            <span class="s2">"黄冈市"</span><span class="p">:</span> <span class="s2">"421100"</span><span class="p">,</span>
+            <span class="s2">"咸宁市"</span><span class="p">:</span> <span class="s2">"421200"</span><span class="p">,</span>
+            <span class="s2">"随州市"</span><span class="p">:</span> <span class="s2">"421300"</span><span class="p">,</span>
+            <span class="s2">"恩施土家族苗族自治州"</span><span class="p">:</span> <span class="s2">"422800"</span><span class="p">,</span>
+            <span class="s2">"长沙市"</span><span class="p">:</span> <span class="s2">"430100"</span><span class="p">,</span>
+            <span class="s2">"株洲市"</span><span class="p">:</span> <span class="s2">"430200"</span><span class="p">,</span>
+            <span class="s2">"湘潭市"</span><span class="p">:</span> <span class="s2">"430300"</span><span class="p">,</span>
+            <span class="s2">"衡阳市"</span><span class="p">:</span> <span class="s2">"430400"</span><span class="p">,</span>
+            <span class="s2">"邵阳市"</span><span class="p">:</span> <span class="s2">"430500"</span><span class="p">,</span>
+            <span class="s2">"岳阳市"</span><span class="p">:</span> <span class="s2">"430600"</span><span class="p">,</span>
+            <span class="s2">"常德市"</span><span class="p">:</span> <span class="s2">"430700"</span><span class="p">,</span>
+            <span class="s2">"张家界市"</span><span class="p">:</span> <span class="s2">"430800"</span><span class="p">,</span>
+            <span class="s2">"益阳市"</span><span class="p">:</span> <span class="s2">"430900"</span><span class="p">,</span>
+            <span class="s2">"郴州市"</span><span class="p">:</span> <span class="s2">"431000"</span><span class="p">,</span>
+            <span class="s2">"永州市"</span><span class="p">:</span> <span class="s2">"431100"</span><span class="p">,</span>
+            <span class="s2">"怀化市"</span><span class="p">:</span> <span class="s2">"431200"</span><span class="p">,</span>
+            <span class="s2">"娄底市"</span><span class="p">:</span> <span class="s2">"431300"</span><span class="p">,</span>
+            <span class="s2">"湘西土家族苗族自治州"</span><span class="p">:</span> <span class="s2">"433100"</span><span class="p">,</span>
+            <span class="s2">"广州市"</span><span class="p">:</span> <span class="s2">"440100"</span><span class="p">,</span>
+            <span class="s2">"韶关市"</span><span class="p">:</span> <span class="s2">"440200"</span><span class="p">,</span>
+            <span class="s2">"深圳市"</span><span class="p">:</span> <span class="s2">"440300"</span><span class="p">,</span>
+            <span class="s2">"珠海市"</span><span class="p">:</span> <span class="s2">"440400"</span><span class="p">,</span>
+            <span class="s2">"汕头市"</span><span class="p">:</span> <span class="s2">"440500"</span><span class="p">,</span>
+            <span class="s2">"佛山市"</span><span class="p">:</span> <span class="s2">"440600"</span><span class="p">,</span>
+            <span class="s2">"江门市"</span><span class="p">:</span> <span class="s2">"440700"</span><span class="p">,</span>
+            <span class="s2">"湛江市"</span><span class="p">:</span> <span class="s2">"440800"</span><span class="p">,</span>
+            <span class="s2">"茂名市"</span><span class="p">:</span> <span class="s2">"440900"</span><span class="p">,</span>
+            <span class="s2">"肇庆市"</span><span class="p">:</span> <span class="s2">"441200"</span><span class="p">,</span>
+            <span class="s2">"惠州市"</span><span class="p">:</span> <span class="s2">"441300"</span><span class="p">,</span>
+            <span class="s2">"梅州市"</span><span class="p">:</span> <span class="s2">"441400"</span><span class="p">,</span>
+            <span class="s2">"汕尾市"</span><span class="p">:</span> <span class="s2">"441500"</span><span class="p">,</span>
+            <span class="s2">"河源市"</span><span class="p">:</span> <span class="s2">"441600"</span><span class="p">,</span>
+            <span class="s2">"阳江市"</span><span class="p">:</span> <span class="s2">"441700"</span><span class="p">,</span>
+            <span class="s2">"清远市"</span><span class="p">:</span> <span class="s2">"441800"</span><span class="p">,</span>
+            <span class="s2">"东莞市"</span><span class="p">:</span> <span class="s2">"441900"</span><span class="p">,</span>
+            <span class="s2">"中山市"</span><span class="p">:</span> <span class="s2">"442000"</span><span class="p">,</span>
+            <span class="s2">"潮州市"</span><span class="p">:</span> <span class="s2">"445100"</span><span class="p">,</span>
+            <span class="s2">"揭阳市"</span><span class="p">:</span> <span class="s2">"445200"</span><span class="p">,</span>
+            <span class="s2">"云浮市"</span><span class="p">:</span> <span class="s2">"445300"</span><span class="p">,</span>
+            <span class="s2">"南宁市"</span><span class="p">:</span> <span class="s2">"450100"</span><span class="p">,</span>
+            <span class="s2">"柳州市"</span><span class="p">:</span> <span class="s2">"450200"</span><span class="p">,</span>
+            <span class="s2">"桂林市"</span><span class="p">:</span> <span class="s2">"450300"</span><span class="p">,</span>
+            <span class="s2">"梧州市"</span><span class="p">:</span> <span class="s2">"450400"</span><span class="p">,</span>
+            <span class="s2">"北海市"</span><span class="p">:</span> <span class="s2">"450500"</span><span class="p">,</span>
+            <span class="s2">"防城港市"</span><span class="p">:</span> <span class="s2">"450600"</span><span class="p">,</span>
+            <span class="s2">"钦州市"</span><span class="p">:</span> <span class="s2">"450700"</span><span class="p">,</span>
+            <span class="s2">"贵港市"</span><span class="p">:</span> <span class="s2">"450800"</span><span class="p">,</span>
+            <span class="s2">"玉林市"</span><span class="p">:</span> <span class="s2">"450900"</span><span class="p">,</span>
+            <span class="s2">"百色市"</span><span class="p">:</span> <span class="s2">"451000"</span><span class="p">,</span>
+            <span class="s2">"贺州市"</span><span class="p">:</span> <span class="s2">"451100"</span><span class="p">,</span>
+            <span class="s2">"河池市"</span><span class="p">:</span> <span class="s2">"451200"</span><span class="p">,</span>
+            <span class="s2">"来宾市"</span><span class="p">:</span> <span class="s2">"451300"</span><span class="p">,</span>
+            <span class="s2">"崇左市"</span><span class="p">:</span> <span class="s2">"451400"</span><span class="p">,</span>
+            <span class="s2">"海口市"</span><span class="p">:</span> <span class="s2">"460100"</span><span class="p">,</span>
+            <span class="s2">"三亚市"</span><span class="p">:</span> <span class="s2">"460200"</span><span class="p">,</span>
+            <span class="s2">"三沙市"</span><span class="p">:</span> <span class="s2">"460300"</span><span class="p">,</span>
+            <span class="s2">"成都市"</span><span class="p">:</span> <span class="s2">"510100"</span><span class="p">,</span>
+            <span class="s2">"自贡市"</span><span class="p">:</span> <span class="s2">"510300"</span><span class="p">,</span>
+            <span class="s2">"攀枝花市"</span><span class="p">:</span> <span class="s2">"510400"</span><span class="p">,</span>
+            <span class="s2">"泸州市"</span><span class="p">:</span> <span class="s2">"510500"</span><span class="p">,</span>
+            <span class="s2">"德阳市"</span><span class="p">:</span> <span class="s2">"510600"</span><span class="p">,</span>
+            <span class="s2">"绵阳市"</span><span class="p">:</span> <span class="s2">"510700"</span><span class="p">,</span>
+            <span class="s2">"广元市"</span><span class="p">:</span> <span class="s2">"510800"</span><span class="p">,</span>
+            <span class="s2">"遂宁市"</span><span class="p">:</span> <span class="s2">"510900"</span><span class="p">,</span>
+            <span class="s2">"内江市"</span><span class="p">:</span> <span class="s2">"511000"</span><span class="p">,</span>
+            <span class="s2">"乐山市"</span><span class="p">:</span> <span class="s2">"511100"</span><span class="p">,</span>
+            <span class="s2">"南充市"</span><span class="p">:</span> <span class="s2">"511300"</span><span class="p">,</span>
+            <span class="s2">"眉山市"</span><span class="p">:</span> <span class="s2">"511400"</span><span class="p">,</span>
+            <span class="s2">"宜宾市"</span><span class="p">:</span> <span class="s2">"511500"</span><span class="p">,</span>
+            <span class="s2">"广安市"</span><span class="p">:</span> <span class="s2">"511600"</span><span class="p">,</span>
+            <span class="s2">"达州市"</span><span class="p">:</span> <span class="s2">"511700"</span><span class="p">,</span>
+            <span class="s2">"雅安市"</span><span class="p">:</span> <span class="s2">"511800"</span><span class="p">,</span>
+            <span class="s2">"巴中市"</span><span class="p">:</span> <span class="s2">"511900"</span><span class="p">,</span>
+            <span class="s2">"资阳市"</span><span class="p">:</span> <span class="s2">"512000"</span><span class="p">,</span>
+            <span class="s2">"阿坝藏族羌族自治州"</span><span class="p">:</span> <span class="s2">"513200"</span><span class="p">,</span>
+            <span class="s2">"甘孜藏族自治州"</span><span class="p">:</span> <span class="s2">"513300"</span><span class="p">,</span>
+            <span class="s2">"凉山彝族自治州"</span><span class="p">:</span> <span class="s2">"513400"</span><span class="p">,</span>
+            <span class="s2">"贵阳市"</span><span class="p">:</span> <span class="s2">"520100"</span><span class="p">,</span>
+            <span class="s2">"六盘水市"</span><span class="p">:</span> <span class="s2">"520200"</span><span class="p">,</span>
+            <span class="s2">"遵义市"</span><span class="p">:</span> <span class="s2">"520300"</span><span class="p">,</span>
+            <span class="s2">"安顺市"</span><span class="p">:</span> <span class="s2">"520400"</span><span class="p">,</span>
+            <span class="s2">"黔西南布依族苗族自治州"</span><span class="p">:</span> <span class="s2">"522300"</span><span class="p">,</span>
+            <span class="s2">"黔东南苗族侗族自治州"</span><span class="p">:</span> <span class="s2">"522600"</span><span class="p">,</span>
+            <span class="s2">"黔南布依族苗族自治州"</span><span class="p">:</span> <span class="s2">"522700"</span><span class="p">,</span>
+            <span class="s2">"昆明市"</span><span class="p">:</span> <span class="s2">"530100"</span><span class="p">,</span>
+            <span class="s2">"曲靖市"</span><span class="p">:</span> <span class="s2">"530300"</span><span class="p">,</span>
+            <span class="s2">"玉溪市"</span><span class="p">:</span> <span class="s2">"530400"</span><span class="p">,</span>
+            <span class="s2">"保山市"</span><span class="p">:</span> <span class="s2">"530500"</span><span class="p">,</span>
+            <span class="s2">"昭通市"</span><span class="p">:</span> <span class="s2">"530600"</span><span class="p">,</span>
+            <span class="s2">"丽江市"</span><span class="p">:</span> <span class="s2">"530700"</span><span class="p">,</span>
+            <span class="s2">"普洱市"</span><span class="p">:</span> <span class="s2">"530800"</span><span class="p">,</span>
+            <span class="s2">"临沧市"</span><span class="p">:</span> <span class="s2">"530900"</span><span class="p">,</span>
+            <span class="s2">"楚雄彝族自治州"</span><span class="p">:</span> <span class="s2">"532300"</span><span class="p">,</span>
+            <span class="s2">"红河哈尼族彝族自治州"</span><span class="p">:</span> <span class="s2">"532500"</span><span class="p">,</span>
+            <span class="s2">"文山壮族苗族自治州"</span><span class="p">:</span> <span class="s2">"532600"</span><span class="p">,</span>
+            <span class="s2">"西双版纳傣族自治州"</span><span class="p">:</span> <span class="s2">"532800"</span><span class="p">,</span>
+            <span class="s2">"大理白族自治州"</span><span class="p">:</span> <span class="s2">"532900"</span><span class="p">,</span>
+            <span class="s2">"德宏傣族景颇族自治州"</span><span class="p">:</span> <span class="s2">"533100"</span><span class="p">,</span>
+            <span class="s2">"怒江傈僳族自治州"</span><span class="p">:</span> <span class="s2">"533300"</span><span class="p">,</span>
+            <span class="s2">"迪庆藏族自治州"</span><span class="p">:</span> <span class="s2">"533400"</span><span class="p">,</span>
+            <span class="s2">"拉萨市"</span><span class="p">:</span> <span class="s2">"540100"</span><span class="p">,</span>
+            <span class="s2">"昌都地区"</span><span class="p">:</span> <span class="s2">"542100"</span><span class="p">,</span>
+            <span class="s2">"山南地区"</span><span class="p">:</span> <span class="s2">"542200"</span><span class="p">,</span>
+            <span class="s2">"日喀则地区"</span><span class="p">:</span> <span class="s2">"542300"</span><span class="p">,</span>
+            <span class="s2">"那曲地区"</span><span class="p">:</span> <span class="s2">"542400"</span><span class="p">,</span>
+            <span class="s2">"阿里地区"</span><span class="p">:</span> <span class="s2">"542500"</span><span class="p">,</span>
+            <span class="s2">"林芝地区"</span><span class="p">:</span> <span class="s2">"542600"</span><span class="p">,</span>
+            <span class="s2">"西安市"</span><span class="p">:</span> <span class="s2">"610100"</span><span class="p">,</span>
+            <span class="s2">"铜川市"</span><span class="p">:</span> <span class="s2">"610200"</span><span class="p">,</span>
+            <span class="s2">"宝鸡市"</span><span class="p">:</span> <span class="s2">"610300"</span><span class="p">,</span>
+            <span class="s2">"咸阳市"</span><span class="p">:</span> <span class="s2">"610400"</span><span class="p">,</span>
+            <span class="s2">"渭南市"</span><span class="p">:</span> <span class="s2">"610500"</span><span class="p">,</span>
+            <span class="s2">"延安市"</span><span class="p">:</span> <span class="s2">"610600"</span><span class="p">,</span>
+            <span class="s2">"汉中市"</span><span class="p">:</span> <span class="s2">"610700"</span><span class="p">,</span>
+            <span class="s2">"榆林市"</span><span class="p">:</span> <span class="s2">"610800"</span><span class="p">,</span>
+            <span class="s2">"安康市"</span><span class="p">:</span> <span class="s2">"610900"</span><span class="p">,</span>
+            <span class="s2">"商洛市"</span><span class="p">:</span> <span class="s2">"611000"</span><span class="p">,</span>
+            <span class="s2">"兰州市"</span><span class="p">:</span> <span class="s2">"620100"</span><span class="p">,</span>
+            <span class="s2">"嘉峪关市"</span><span class="p">:</span> <span class="s2">"620200"</span><span class="p">,</span>
+            <span class="s2">"金昌市"</span><span class="p">:</span> <span class="s2">"620300"</span><span class="p">,</span>
+            <span class="s2">"白银市"</span><span class="p">:</span> <span class="s2">"620400"</span><span class="p">,</span>
+            <span class="s2">"天水市"</span><span class="p">:</span> <span class="s2">"620500"</span><span class="p">,</span>
+            <span class="s2">"武威市"</span><span class="p">:</span> <span class="s2">"620600"</span><span class="p">,</span>
+            <span class="s2">"张掖市"</span><span class="p">:</span> <span class="s2">"620700"</span><span class="p">,</span>
+            <span class="s2">"平凉市"</span><span class="p">:</span> <span class="s2">"620800"</span><span class="p">,</span>
+            <span class="s2">"酒泉市"</span><span class="p">:</span> <span class="s2">"620900"</span><span class="p">,</span>
+            <span class="s2">"庆阳市"</span><span class="p">:</span> <span class="s2">"621000"</span><span class="p">,</span>
+            <span class="s2">"定西市"</span><span class="p">:</span> <span class="s2">"621100"</span><span class="p">,</span>
+            <span class="s2">"陇南市"</span><span class="p">:</span> <span class="s2">"621200"</span><span class="p">,</span>
+            <span class="s2">"临夏回族自治州"</span><span class="p">:</span> <span class="s2">"622900"</span><span class="p">,</span>
+            <span class="s2">"甘南藏族自治州"</span><span class="p">:</span> <span class="s2">"623000"</span><span class="p">,</span>
+            <span class="s2">"西宁市"</span><span class="p">:</span> <span class="s2">"630100"</span><span class="p">,</span>
+            <span class="s2">"海东地区"</span><span class="p">:</span> <span class="s2">"632100"</span><span class="p">,</span>
+            <span class="s2">"海北藏族自治州"</span><span class="p">:</span> <span class="s2">"632200"</span><span class="p">,</span>
+            <span class="s2">"黄南藏族自治州"</span><span class="p">:</span> <span class="s2">"632300"</span><span class="p">,</span>
+            <span class="s2">"海南藏族自治州"</span><span class="p">:</span> <span class="s2">"632500"</span><span class="p">,</span>
+            <span class="s2">"果洛藏族自治州"</span><span class="p">:</span> <span class="s2">"632600"</span><span class="p">,</span>
+            <span class="s2">"玉树藏族自治州"</span><span class="p">:</span> <span class="s2">"632700"</span><span class="p">,</span>
+            <span class="s2">"海西蒙古族藏族自治州"</span><span class="p">:</span> <span class="s2">"632800"</span><span class="p">,</span>
+            <span class="s2">"银川市"</span><span class="p">:</span> <span class="s2">"640100"</span><span class="p">,</span>
+            <span class="s2">"石嘴山市"</span><span class="p">:</span> <span class="s2">"640200"</span><span class="p">,</span>
+            <span class="s2">"吴忠市"</span><span class="p">:</span> <span class="s2">"640300"</span><span class="p">,</span>
+            <span class="s2">"固原市"</span><span class="p">:</span> <span class="s2">"640400"</span><span class="p">,</span>
+            <span class="s2">"中卫市"</span><span class="p">:</span> <span class="s2">"640500"</span><span class="p">,</span>
+            <span class="s2">"乌鲁木齐市"</span><span class="p">:</span> <span class="s2">"650100"</span><span class="p">,</span>
+            <span class="s2">"克拉玛依市"</span><span class="p">:</span> <span class="s2">"650200"</span><span class="p">,</span>
+            <span class="s2">"吐鲁番地区"</span><span class="p">:</span> <span class="s2">"652100"</span><span class="p">,</span>
+            <span class="s2">"哈密地区"</span><span class="p">:</span> <span class="s2">"652200"</span><span class="p">,</span>
+            <span class="s2">"昌吉回族自治州"</span><span class="p">:</span> <span class="s2">"652300"</span><span class="p">,</span>
+            <span class="s2">"博尔塔拉蒙古自治州"</span><span class="p">:</span> <span class="s2">"652700"</span><span class="p">,</span>
+            <span class="s2">"巴音郭楞蒙古自治州"</span><span class="p">:</span> <span class="s2">"652800"</span><span class="p">,</span>
+            <span class="s2">"阿克苏地区"</span><span class="p">:</span> <span class="s2">"652900"</span><span class="p">,</span>
+            <span class="s2">"克孜勒苏柯尔克孜自治州"</span><span class="p">:</span> <span class="s2">"653000"</span><span class="p">,</span>
+            <span class="s2">"喀什地区"</span><span class="p">:</span> <span class="s2">"653100"</span><span class="p">,</span>
+            <span class="s2">"和田地区"</span><span class="p">:</span> <span class="s2">"653200"</span><span class="p">,</span>
+            <span class="s2">"伊犁哈萨克自治州"</span><span class="p">:</span> <span class="s2">"654000"</span><span class="p">,</span>
+            <span class="s2">"塔城地区"</span><span class="p">:</span> <span class="s2">"654200"</span><span class="p">,</span>
+            <span class="s2">"阿勒泰地区"</span><span class="p">:</span> <span class="s2">"654300"</span><span class="p">,</span>
+            <span class="s2">"自治区直辖县级行政区划"</span><span class="p">:</span> <span class="s2">"659000"</span><span class="p">,</span>
+            <span class="s2">"台湾省"</span><span class="p">:</span> <span class="s2">"710000"</span><span class="p">,</span>
+            <span class="s2">"香港特别行政区"</span><span class="p">:</span> <span class="s2">"810100"</span><span class="p">,</span>
+            <span class="s2">"澳门特别行政区"</span><span class="p">:</span> <span class="s2">"820000"</span>
+        <span class="p">};</span>
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+        <span class="kd">var</span> <span class="nx">curIndx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">mapType</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="kd">var</span> <span class="nx">myChart</span> <span class="o">=</span> <span class="nx">ec</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'main'</span><span class="p">));</span>
+        <span class="kd">var</span> <span class="nx">mapGeoData</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'echarts/util/mapData/params'</span><span class="p">);</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">city</span> <span class="k">in</span> <span class="nx">cityMap</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">mapType</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">city</span><span class="p">);</span>
+            <span class="c1">// 自定义扩展图表类型</span>
+            <span class="nx">mapGeoData</span><span class="p">.</span><span class="nx">params</span><span class="p">[</span><span class="nx">city</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="na">getGeoJson</span><span class="p">:</span> <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">geoJsonName</span> <span class="o">=</span> <span class="nx">cityMap</span><span class="p">[</span><span class="nx">c</span><span class="p">];</span>
+                    <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">'geoJson/china-main-city/'</span> <span class="o">+</span> <span class="nx">geoJsonName</span> <span class="o">+</span> <span class="s1">'.json'</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">})(</span><span class="nx">city</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">ecConfig</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'echarts/config'</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">zrEvent</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'zrender/tool/event'</span><span class="p">);</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'main'</span><span class="p">).</span><span class="nx">onmousewheel</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+            <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+            <span class="nx">curIndx</span> <span class="o">+=</span> <span class="nx">zrEvent</span><span class="p">.</span><span class="nx">getDelta</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">?</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">curIndx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">curIndx</span> <span class="o">=</span> <span class="nx">mapType</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="kd">var</span> <span class="nx">mt</span> <span class="o">=</span> <span class="nx">mapType</span><span class="p">[</span><span class="nx">curIndx</span> <span class="o">%</span> <span class="nx">mapType</span><span class="p">.</span><span class="nx">length</span><span class="p">];</span>
+            <span class="nx">option</span><span class="p">.</span><span class="nx">series</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">mapType</span> <span class="o">=</span> <span class="nx">mt</span><span class="p">;</span>
+            <span class="nx">option</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">subtext</span> <span class="o">=</span> <span class="nx">mt</span> <span class="o">+</span> <span class="s1">' （滚轮或点击切换）'</span><span class="p">;</span>
+            <span class="nx">myChart</span><span class="p">.</span><span class="nx">setOption</span><span class="p">(</span><span class="nx">option</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+            <span class="nx">zrEvent</span><span class="p">.</span><span class="nx">stop</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+        <span class="p">};</span>
+        <span class="nx">myChart</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">ecConfig</span><span class="p">.</span><span class="nx">EVENT</span><span class="p">.</span><span class="nx">MAP_SELECTED</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">param</span><span class="p">){</span>
+            <span class="nx">curIndx</span><span class="o">++</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">mt</span> <span class="o">=</span> <span class="nx">mapType</span><span class="p">[</span><span class="nx">curIndx</span> <span class="o">%</span> <span class="nx">mapType</span><span class="p">.</span><span class="nx">length</span><span class="p">];</span>
+            <span class="nx">option</span><span class="p">.</span><span class="nx">series</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">mapType</span> <span class="o">=</span> <span class="nx">mt</span><span class="p">;</span>
+            <span class="nx">option</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">subtext</span> <span class="o">=</span> <span class="nx">mt</span> <span class="o">+</span> <span class="s1">' （滚轮或点击切换）'</span><span class="p">;</span>
+            <span class="nx">myChart</span><span class="p">.</span><span class="nx">setOption</span><span class="p">(</span><span class="nx">option</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="p">});</span> 
+                <span class="kd">var</span> <span class="nx">option</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="na">title</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="na">text</span> <span class="p">:</span> <span class="s1">'全国344个主要城市（县）地图 by Pactera 陈然'</span><span class="p">,</span>
+                    <span class="na">subtext</span> <span class="p">:</span> <span class="s1">'北京市 （滚轮或点击切换）'</span>
+                <span class="p">},</span>
+                <span class="na">tooltip</span> <span class="p">:</span> <span class="p">{</span>
+                    <span class="na">trigger</span><span class="p">:</span> <span class="s1">'item'</span><span class="p">,</span>
+                    <span class="na">formatter</span><span class="p">:</span> <span class="s1">'滚轮或点击切换&lt;br/&gt;{b}'</span>
+                <span class="p">},</span>
+                <span class="na">series</span> <span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="na">name</span><span class="p">:</span> <span class="s1">'全国344个主要城市（县）地图'</span><span class="p">,</span>
+                        <span class="na">type</span><span class="p">:</span> <span class="s1">'map'</span><span class="p">,</span>
+                        <span class="na">mapType</span><span class="p">:</span> <span class="s1">'北京市'</span><span class="p">,</span>
+                        <span class="na">selectedMode</span> <span class="p">:</span> <span class="s1">'single'</span><span class="p">,</span>
+                        <span class="na">itemStyle</span><span class="p">:{</span>
+                            <span class="na">normal</span><span class="p">:{</span><span class="na">label</span><span class="p">:{</span><span class="na">show</span><span class="p">:</span><span class="kc">true</span><span class="p">}},</span>
+                            <span class="na">emphasis</span><span class="p">:{</span><span class="na">label</span><span class="p">:{</span><span class="na">show</span><span class="p">:</span><span class="kc">true</span><span class="p">}}</span>
+                        <span class="p">},</span>
+                        <span class="na">data</span><span class="p">:[]</span>
+                    <span class="p">}</span>
+                <span class="p">]</span>
+                <span class="p">}</span>
+                <span class="nx">myChart</span><span class="p">.</span><span class="nx">setOption</span><span class="p">(</span><span class="nx">option</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">);</span>
+    <span class="nt">&lt;/script&gt;</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<span class="nt">&lt;/html&gt;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code>    <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"./echarts/dist/echarts.js"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"./echarts/jquery.min.js"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request sucks.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
+<p>在浏览器中打开default.html文件</p>
+<h1 id='resources'>Resources</h1>
+<ul>
+<li><a href="https://github.com/ecomfe/echarts">Echart</a></li>
+<li><a href="http://blog.csdn.net/flitrue">My Blog</a></li>
+</ul>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="html">html</a>
+                <a href="#" data-language-name="css">css</a>
                 <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
