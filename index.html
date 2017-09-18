@@ -1,443 +1,501 @@
+
+<!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>全国344个主要城市（县）地图</title>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Flitrue`s Blog</title>
 
-<body>
-	<div id="main" style="height:400px;"></div>
-</body>
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
 
-    <script src="./echarts/dist/echarts.js"></script>
-    <script src="./echarts/jquery.min.js"></script>
-    <script type="text/javascript">
-        require.config({
-            paths: {
-                echarts: './echarts/dist'
-            }
-        });
-		
-        require(
-            [
-                'echarts',
-				'echarts/chart/map'
-            ],
-            function (ec) {
-	
-		var cityMap = {
-			"北京市": "110100",
-			"天津市": "120100",
-			"上海市": "310100",
-			"重庆市": "500100",
-			
-			"崇明县": "310200",
-			"湖北省直辖县市": "429000",
-			"铜仁市": "522200",
-			"毕节市": "522400",
-			
-			"石家庄市": "130100",
-			"唐山市": "130200",
-			"秦皇岛市": "130300",
-			"邯郸市": "130400",
-			"邢台市": "130500",
-			"保定市": "130600",
-			"张家口市": "130700",
-			"承德市": "130800",
-			"沧州市": "130900",
-			"廊坊市": "131000",
-			"衡水市": "131100",
-			"太原市": "140100",
-			"大同市": "140200",
-			"阳泉市": "140300",
-			"长治市": "140400",
-			"晋城市": "140500",
-			"朔州市": "140600",
-			"晋中市": "140700",
-			"运城市": "140800",
-			"忻州市": "140900",
-			"临汾市": "141000",
-			"吕梁市": "141100",
-			"呼和浩特市": "150100",
-			"包头市": "150200",
-			"乌海市": "150300",
-			"赤峰市": "150400",
-			"通辽市": "150500",
-			"鄂尔多斯市": "150600",
-			"呼伦贝尔市": "150700",
-			"巴彦淖尔市": "150800",
-			"乌兰察布市": "150900",
-			"兴安盟": "152200",
-			"锡林郭勒盟": "152500",
-			"阿拉善盟": "152900",
-			"沈阳市": "210100",
-			"大连市": "210200",
-			"鞍山市": "210300",
-			"抚顺市": "210400",
-			"本溪市": "210500",
-			"丹东市": "210600",
-			"锦州市": "210700",
-			"营口市": "210800",
-			"阜新市": "210900",
-			"辽阳市": "211000",
-			"盘锦市": "211100",
-			"铁岭市": "211200",
-			"朝阳市": "211300",
-			"葫芦岛市": "211400",
-			"长春市": "220100",
-			"吉林市": "220200",
-			"四平市": "220300",
-			"辽源市": "220400",
-			"通化市": "220500",
-			"白山市": "220600",
-			"松原市": "220700",
-			"白城市": "220800",
-			"延边朝鲜族自治州": "222400",
-			"哈尔滨市": "230100",
-			"齐齐哈尔市": "230200",
-			"鸡西市": "230300",
-			"鹤岗市": "230400",
-			"双鸭山市": "230500",
-			"大庆市": "230600",
-			"伊春市": "230700",
-			"佳木斯市": "230800",
-			"七台河市": "230900",
-			"牡丹江市": "231000",
-			"黑河市": "231100",
-			"绥化市": "231200",
-			"大兴安岭地区": "232700",
-			"南京市": "320100",
-			"无锡市": "320200",
-			"徐州市": "320300",
-			"常州市": "320400",
-			"苏州市": "320500",
-			"南通市": "320600",
-			"连云港市": "320700",
-			"淮安市": "320800",
-			"盐城市": "320900",
-			"扬州市": "321000",
-			"镇江市": "321100",
-			"泰州市": "321200",
-			"宿迁市": "321300",
-			"杭州市": "330100",
-			"宁波市": "330200",
-			"温州市": "330300",
-			"嘉兴市": "330400",
-			"湖州市": "330500",
-			"绍兴市": "330600",
-			"金华市": "330700",
-			"衢州市": "330800",
-			"舟山市": "330900",
-			"台州市": "331000",
-			"丽水市": "331100",
-			"合肥市": "340100",
-			"芜湖市": "340200",
-			"蚌埠市": "340300",
-			"淮南市": "340400",
-			"马鞍山市": "340500",
-			"淮北市": "340600",
-			"铜陵市": "340700",
-			"安庆市": "340800",
-			"黄山市": "341000",
-			"滁州市": "341100",
-			"阜阳市": "341200",
-			"宿州市": "341300",
-			"六安市": "341500",
-			"亳州市": "341600",
-			"池州市": "341700",
-			"宣城市": "341800",
-			"福州市": "350100",
-			"厦门市": "350200",
-			"莆田市": "350300",
-			"三明市": "350400",
-			"泉州市": "350500",
-			"漳州市": "350600",
-			"南平市": "350700",
-			"龙岩市": "350800",
-			"宁德市": "350900",
-			"南昌市": "360100",
-			"景德镇市": "360200",
-			"萍乡市": "360300",
-			"九江市": "360400",
-			"新余市": "360500",
-			"鹰潭市": "360600",
-			"赣州市": "360700",
-			"吉安市": "360800",
-			"宜春市": "360900",
-			"抚州市": "361000",
-			"上饶市": "361100",
-			"济南市": "370100",
-			"青岛市": "370200",
-			"淄博市": "370300",
-			"枣庄市": "370400",
-			"东营市": "370500",
-			"烟台市": "370600",
-			"潍坊市": "370700",
-			"济宁市": "370800",
-			"泰安市": "370900",
-			"威海市": "371000",
-			"日照市": "371100",
-			"莱芜市": "371200",
-			"临沂市": "371300",
-			"德州市": "371400",
-			"聊城市": "371500",
-			"滨州市": "371600",
-			"菏泽市": "371700",
-			"郑州市": "410100",
-			"开封市": "410200",
-			"洛阳市": "410300",
-			"平顶山市": "410400",
-			"安阳市": "410500",
-			"鹤壁市": "410600",
-			"新乡市": "410700",
-			"焦作市": "410800",
-			"濮阳市": "410900",
-			"许昌市": "411000",
-			"漯河市": "411100",
-			"三门峡市": "411200",
-			"南阳市": "411300",
-			"商丘市": "411400",
-			"信阳市": "411500",
-			"周口市": "411600",
-			"驻马店市": "411700",
-			"省直辖县级行政区划": "469000",
-			"武汉市": "420100",
-			"黄石市": "420200",
-			"十堰市": "420300",
-			"宜昌市": "420500",
-			"襄阳市": "420600",
-			"鄂州市": "420700",
-			"荆门市": "420800",
-			"孝感市": "420900",
-			"荆州市": "421000",
-			"黄冈市": "421100",
-			"咸宁市": "421200",
-			"随州市": "421300",
-			"恩施土家族苗族自治州": "422800",
-			"长沙市": "430100",
-			"株洲市": "430200",
-			"湘潭市": "430300",
-			"衡阳市": "430400",
-			"邵阳市": "430500",
-			"岳阳市": "430600",
-			"常德市": "430700",
-			"张家界市": "430800",
-			"益阳市": "430900",
-			"郴州市": "431000",
-			"永州市": "431100",
-			"怀化市": "431200",
-			"娄底市": "431300",
-			"湘西土家族苗族自治州": "433100",
-			"广州市": "440100",
-			"韶关市": "440200",
-			"深圳市": "440300",
-			"珠海市": "440400",
-			"汕头市": "440500",
-			"佛山市": "440600",
-			"江门市": "440700",
-			"湛江市": "440800",
-			"茂名市": "440900",
-			"肇庆市": "441200",
-			"惠州市": "441300",
-			"梅州市": "441400",
-			"汕尾市": "441500",
-			"河源市": "441600",
-			"阳江市": "441700",
-			"清远市": "441800",
-			"东莞市": "441900",
-			"中山市": "442000",
-			"潮州市": "445100",
-			"揭阳市": "445200",
-			"云浮市": "445300",
-			"南宁市": "450100",
-			"柳州市": "450200",
-			"桂林市": "450300",
-			"梧州市": "450400",
-			"北海市": "450500",
-			"防城港市": "450600",
-			"钦州市": "450700",
-			"贵港市": "450800",
-			"玉林市": "450900",
-			"百色市": "451000",
-			"贺州市": "451100",
-			"河池市": "451200",
-			"来宾市": "451300",
-			"崇左市": "451400",
-			"海口市": "460100",
-			"三亚市": "460200",
-			"三沙市": "460300",
-			"成都市": "510100",
-			"自贡市": "510300",
-			"攀枝花市": "510400",
-			"泸州市": "510500",
-			"德阳市": "510600",
-			"绵阳市": "510700",
-			"广元市": "510800",
-			"遂宁市": "510900",
-			"内江市": "511000",
-			"乐山市": "511100",
-			"南充市": "511300",
-			"眉山市": "511400",
-			"宜宾市": "511500",
-			"广安市": "511600",
-			"达州市": "511700",
-			"雅安市": "511800",
-			"巴中市": "511900",
-			"资阳市": "512000",
-			"阿坝藏族羌族自治州": "513200",
-			"甘孜藏族自治州": "513300",
-			"凉山彝族自治州": "513400",
-			"贵阳市": "520100",
-			"六盘水市": "520200",
-			"遵义市": "520300",
-			"安顺市": "520400",
-			"黔西南布依族苗族自治州": "522300",
-			"黔东南苗族侗族自治州": "522600",
-			"黔南布依族苗族自治州": "522700",
-			"昆明市": "530100",
-			"曲靖市": "530300",
-			"玉溪市": "530400",
-			"保山市": "530500",
-			"昭通市": "530600",
-			"丽江市": "530700",
-			"普洱市": "530800",
-			"临沧市": "530900",
-			"楚雄彝族自治州": "532300",
-			"红河哈尼族彝族自治州": "532500",
-			"文山壮族苗族自治州": "532600",
-			"西双版纳傣族自治州": "532800",
-			"大理白族自治州": "532900",
-			"德宏傣族景颇族自治州": "533100",
-			"怒江傈僳族自治州": "533300",
-			"迪庆藏族自治州": "533400",
-			"拉萨市": "540100",
-			"昌都地区": "542100",
-			"山南地区": "542200",
-			"日喀则地区": "542300",
-			"那曲地区": "542400",
-			"阿里地区": "542500",
-			"林芝地区": "542600",
-			"西安市": "610100",
-			"铜川市": "610200",
-			"宝鸡市": "610300",
-			"咸阳市": "610400",
-			"渭南市": "610500",
-			"延安市": "610600",
-			"汉中市": "610700",
-			"榆林市": "610800",
-			"安康市": "610900",
-			"商洛市": "611000",
-			"兰州市": "620100",
-			"嘉峪关市": "620200",
-			"金昌市": "620300",
-			"白银市": "620400",
-			"天水市": "620500",
-			"武威市": "620600",
-			"张掖市": "620700",
-			"平凉市": "620800",
-			"酒泉市": "620900",
-			"庆阳市": "621000",
-			"定西市": "621100",
-			"陇南市": "621200",
-			"临夏回族自治州": "622900",
-			"甘南藏族自治州": "623000",
-			"西宁市": "630100",
-			"海东地区": "632100",
-			"海北藏族自治州": "632200",
-			"黄南藏族自治州": "632300",
-			"海南藏族自治州": "632500",
-			"果洛藏族自治州": "632600",
-			"玉树藏族自治州": "632700",
-			"海西蒙古族藏族自治州": "632800",
-			"银川市": "640100",
-			"石嘴山市": "640200",
-			"吴忠市": "640300",
-			"固原市": "640400",
-			"中卫市": "640500",
-			"乌鲁木齐市": "650100",
-			"克拉玛依市": "650200",
-			"吐鲁番地区": "652100",
-			"哈密地区": "652200",
-			"昌吉回族自治州": "652300",
-			"博尔塔拉蒙古自治州": "652700",
-			"巴音郭楞蒙古自治州": "652800",
-			"阿克苏地区": "652900",
-			"克孜勒苏柯尔克孜自治州": "653000",
-			"喀什地区": "653100",
-			"和田地区": "653200",
-			"伊犁哈萨克自治州": "654000",
-			"塔城地区": "654200",
-			"阿勒泰地区": "654300",
-			"自治区直辖县级行政区划": "659000",
-			"台湾省": "710000",
-			"香港特别行政区": "810100",
-			"澳门特别行政区": "820000"
-		};
+  <body class="index" data-languages="[&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Kittens">Get All Kittens</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Get a Specific Kitten</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Delete a Specific Kitten</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
 
-		var curIndx = 0;
-		var mapType = [];
-		var myChart = ec.init(document.getElementById('main'));
-		var mapGeoData = require('echarts/util/mapData/params');
+<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
-		for (var city in cityMap) {
-			mapType.push(city);
-			// 自定义扩展图表类型
-			mapGeoData.params[city] = {
-				getGeoJson: (function (c) {
-					var geoJsonName = cityMap[c];
-					return function (callback) {
-						$.getJSON('geoJson/china-main-city/' + geoJsonName + '.json', callback);
-					}
-				})(city)
-			}
-		}
-						
-		var ecConfig = require('echarts/config');
-		var zrEvent = require('zrender/tool/event');
-		document.getElementById('main').onmousewheel = function (e){
-			var event = e || window.event;
-			curIndx += zrEvent.getDelta(event) > 0 ? (-1) : 1;
-			if (curIndx < 0) {
-				curIndx = mapType.length - 1;
-			}
-			var mt = mapType[curIndx % mapType.length];
-			option.series[0].mapType = mt;
-			option.title.subtext = mt + ' （滚轮或点击切换）';
-			myChart.setOption(option, true);
-			zrEvent.stop(event);
-		};
-		myChart.on(ecConfig.EVENT.MAP_SELECTED, function (param){
-			curIndx++;
-			var mt = mapType[curIndx % mapType.length];
-			option.series[0].mapType = mt;
-			option.title.subtext = mt + ' （滚轮或点击切换）';
-			myChart.setOption(option, true);
-		}); 
-                var option = {
-					title: {
-					text : '全国344个主要城市（县）地图 by Pactera 陈然',
-					subtext : '北京市 （滚轮或点击切换）'
-				},
-				tooltip : {
-					trigger: 'item',
-					formatter: '滚轮或点击切换<br/>{b}'
-				},
-				series : [
-					{
-						name: '全国344个主要城市（县）地图',
-						type: 'map',
-						mapType: '北京市',
-						selectedMode : 'single',
-						itemStyle:{
-							normal:{label:{show:true}},
-							emphasis:{label:{show:true}}
-						},
-						data:[]
-					}
-				]
-                }
-                myChart.setOption(option);
-            }
-        );
-    </script>
+<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<h1 id='authentication'>Authentication</h1>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+</blockquote>
+
+<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+
+<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code>Authorization: meowmeowmeow</code></p>
+
+<aside class="notice">
+You must replace <code>meowmeowmeow</code> with your personal API key.
+</aside>
+<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all kittens.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET http://example.com/api/kittens</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include_cats</td>
+<td>false</td>
+<td>If set to true, the result will also include cats.</td>
+</tr>
+<tr>
+<td>available</td>
+<td>true</td>
+<td>If set to false, the result will include kittens that have already been adopted.</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+Remember — a happy kitten is an authenticated kitten!
+</aside>
+<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific kitten.</p>
+
+<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the kitten to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific kitten.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the kitten to delete</td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1>
+<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request sucks.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified kitten could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The kitten requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
 </html>
