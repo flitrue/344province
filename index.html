@@ -1,0 +1,95 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>全国344个主要城市（县）地图</title>
+</head>
+
+<body>
+	<div id="main" style="height:400px;"></div>
+</body>
+
+<script src="./echarts/dist/echarts.js"></script>
+<script src="./echarts/jquery.min.js"></script>
+<script src="./geoJson//china-citys-mapping.js"></script>
+<script type="text/javascript">
+	require.config({
+		paths: {
+			echarts: './echarts/dist'
+		}
+	});
+
+	require(
+		[
+			'echarts',
+			'echarts/chart/map'
+		],
+		function (ec) {
+
+			var curIndx = 0;
+			var mapType = [];
+			var myChart = ec.init(document.getElementById('main'));
+			var mapGeoData = require('echarts/util/mapData/params');
+
+			for (var city in cityMap) {
+				mapType.push(city);
+				// 自定义扩展图表类型
+				mapGeoData.params[city] = {
+					getGeoJson: (function (c) {
+						var geoJsonName = cityMap[c];
+						return function (callback) {
+							$.getJSON('geoJson/china-main-citys/' + geoJsonName + '.json', callback);
+						}
+					})(city)
+				}
+			}
+			var ecConfig = require('echarts/config');
+			var zrEvent = require('zrender/tool/event');
+			document.getElementById('main').onmousewheel = function (e) {
+				var event = e || window.event;
+				curIndx += zrEvent.getDelta(event) > 0 ? (-1) : 1;
+				if (curIndx < 0) {
+					curIndx = mapType.length - 1;
+				}
+				var mt = mapType[curIndx % mapType.length];
+				option.series[0].mapType = mt;
+				option.title.subtext = mt + ' （滚轮或点击切换）';
+				myChart.setOption(option, true);
+				zrEvent.stop(event);
+			};
+			myChart.on(ecConfig.EVENT.MAP_SELECTED, function (param) {
+				curIndx++;
+				var mt = mapType[curIndx % mapType.length];
+				option.series[0].mapType = mt;
+				option.title.subtext = mt + ' （滚轮或点击切换）';
+				myChart.setOption(option, true);
+			});
+			var option = {
+				title: {
+					text: '全国344个主要城市（县）地图',
+					subtext: '北京市 （滚轮或点击切换）'
+				},
+				tooltip: {
+					trigger: 'item',
+					formatter: '滚轮或点击切换<br/>{b}'
+				},
+				series: [
+					{
+						name: '全国344个主要城市（县）地图',
+						type: 'map',
+						mapType: '北京市',
+						selectedMode: 'single',
+						itemStyle: {
+							normal: { label: { show: true } },
+							emphasis: { label: { show: true } }
+						},
+						data: []
+					}
+				]
+			}
+			myChart.setOption(option);
+		}
+	);
+</script>
+
+</html>
